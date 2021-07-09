@@ -123,7 +123,7 @@ const TableComponent = () => {
           </TableBody>  
         </Table>
       </TableContainer>
-      <Button onClick={handleButtonClick}>Click me</Button>
+      <Button color='primary' variant='outlined'  onClick={handleButtonClick}>Delete</Button>
     </div>
     );
 }

@@ -11,6 +11,11 @@ import { Checkbox } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import { CheckBox } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
+import { Select } from '@material-ui/core';
+import Header from "./header.component"
+import RedirectTableToCreate from './redirect1.component';
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -45,7 +50,8 @@ const TableComponent = () => {
 
 
   const [users, setUsers] = useState([])
-
+  // const [group, setGroup] = useState()
+  // const 
   
   useEffect(function effectFunction(){
     console.log(oldUsers)
@@ -65,7 +71,21 @@ const TableComponent = () => {
     console.log('New User State', newUsers)
   }
 
-  const handleButtonClick = () => {
+  const handleSelectChange = (e) => {
+    // setGroup(e.target.value);
+  };
+
+  const handleEditButtonClick = () => {
+    // if user.status === true,//
+    //enables select function for group and customers, enables editing names
+    //if newData !== oldData
+    //replace oldData with newData
+    //update the Data
+    // let editUsers = users
+    // const [editRow,setEditRow] = useState([])
+  }
+
+  const handleDeleteButtonClick = () => {
     const getCheckedUsers = (ele1) => {
       if (ele1.status === true) {
         return ele1.id, ele1.status
@@ -85,8 +105,9 @@ const TableComponent = () => {
 
     return (
       <div>
+      <Header />
       <TableContainer component={Paper}>
-        <Table className={classes.table} size="small" aria-label="a dense table">
+        <Table className={classes.table} size='small' aria-label="a dense table">
           <TableHead>
             <TableRow>
               <TableCell align="center">
@@ -114,7 +135,15 @@ const TableComponent = () => {
                 <TableCell align="center" component="th" scope="row"> {row.id}  </TableCell>
                 <TableCell align="center">{row.name}</TableCell>
                 <TableCell align="center">{row.email}</TableCell>
-                <TableCell align="center">{row.group}</TableCell>
+                <TableCell align="center" >{row.group}
+                  {/* <Select value={row.group} onChange={handleSelectChange}>
+                    <MenuItem value={'Ax'}>Ax</MenuItem>
+                    <MenuItem value={'Bx'}>Bx</MenuItem>
+                    <MenuItem value={'Cx'}>Cx</MenuItem>
+                    <MenuItem value={'Dx'}>Dx</MenuItem>
+                    <MenuItem value={'Ex'}>Ex</MenuItem>
+                  </Select> */}
+                </TableCell>
                 <TableCell align="center">{row.customer}</TableCell>
                 <TableCell align="center">{row.status}</TableCell>
               </TableRow>
@@ -123,7 +152,8 @@ const TableComponent = () => {
           </TableBody>  
         </Table>
       </TableContainer>
-      <Button color='primary' variant='outlined'  onClick={handleButtonClick}>Delete</Button>
+      <Button color='primary' variant='outlined'  onClick={handleDeleteButtonClick}>Delete</Button>
+      <RedirectTableToCreate />
     </div>
     );
 }

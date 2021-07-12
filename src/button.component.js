@@ -1,11 +1,17 @@
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 
-const DelButton = () => {
-    return (
-        <div>
-            <Button variant='contained'>Delete</Button>
-        </div>
-    )
-}
+// const DelButton = () => {
+//     const handleButtonClick = () => {
 
-export default DelButton
+//     }
+    
+//     return (
+//         <div>
+//             <Button variant='contained' onClick={handleButtonClick}>
+//             Delete
+//             </Button>
+//         </div>
+//     )
+// }
+
+// export default DelButton

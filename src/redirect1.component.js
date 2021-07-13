@@ -5,8 +5,8 @@ import { Button } from '@material-ui/core';
 function RedirectTableToCreate() {
   const history = useHistory();
   
-  const handleRoute = () =>{ 
-    history.push("/createuser");
+  const handleRoute = ( ) =>{ 
+    history.push("/edituser");
   }
   
   return (                     

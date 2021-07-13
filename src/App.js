@@ -6,6 +6,7 @@ import TableComponent from "./table.component"//
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Nav from "./Nav"
 import CreateUser from "./createuser.component"
+import EditUser from "./edituser.component"
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
                 {/* <Route path='/' component={Home} /> */}
                 <Route path='/tablecomponent' component={TableComponent} />
                 <Route path='/createuser' component={CreateUser} />
+                <Route path='/edituser' component={EditUser} />
                 {/* <TableComponent />
                 <CreateUser /> */}
         {/* <DelButton /> */}

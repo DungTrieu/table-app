@@ -14,7 +14,7 @@ import { Button } from '@material-ui/core';
 // import { MenuItem } from '@material-ui/core';
 // import { Select } from '@material-ui/core';
 import Header from "./header.component"
-import RedirectTableToCreate from './redirect1.component';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   table: {
@@ -22,22 +22,26 @@ const useStyles = makeStyles({
   },
 });
 
+const groups = ['Fuel', 'Industrial Parts', 'Lubricants', 'Generators', 'Vehicles', 'Packaging']
+const customers = ['Petrolimex', 'Penarol', 'Shell', 'Castrol']
+
 const oldUsers = [
-  {id: '1', name: 'A', email: 'a@gmail.com', group: 'Ax', customer: '4.0',status: false},
-  {id: '2', name: 'B', email: 'b@gmail.com', group: 'Bx', customer: '2.0',status: false},
-  {id: '3', name: 'C', email: 'c@gmail.com', group: 'Cx', customer: '5.0',status: false},
-  {id: '4', name: 'D', email: 'd@gmail.com', group: 'Dx', customer: '1.0',status: false},
-  {id: '5', name: 'E', email: 'e@gmail.com', group: 'Ex', customer: '6.0',status: false},
+  { id: 609, name: 'A', email: 'a@gmail.com', group: groups[1], customer: customers[0], status: false },
+  { id: 12, name: 'Tran Van A', email: 'tranvana@gmail.com', group: groups[2], customer: customers[0], status: false },
+  { id: 1012, name: '@crisp', email: 'crispwastaken@gmail.com', group: groups[3], customer: customers[2], status: false },
+  { id: 402, name: 'turgid123', email: 'turgid123@gmail.com', group: groups[4], customer: customers[1], status: false },
+  { id: 798, name: 'DDDDD', email: 'xdddddd42@gmail.com', group: groups[5], customer: customers[3], status: false }
 ];
 
 const TableComponent = () => {
+
 
 
   // const [checked,setChecked] = useState(true)
   // const [checked1,setChecked1] = useState(true)
   // const [idCheck,setIdCheck] = useState([])
   // const [index,setIndex] = useState(0)
-  
+
   // const handleIdCheck = (props) => {
   //   setIdCheck(prevIdCheck => [...prevIdCheck,props])
   // }
@@ -52,20 +56,20 @@ const TableComponent = () => {
   const [users, setUsers] = useState([])
   // const [group, setGroup] = useState()
   // const 
-  
-  useEffect(function effectFunction(){
+
+  useEffect(function effectFunction() {
     console.log(oldUsers)
     if (oldUsers) {
       setUsers(oldUsers)
     }
     console.log('Current User State', users)
-  },[]) 
+  }, [])
 
 
   const handleCheck = (row) => {
     console.log(row)
-    let newUsers = users.map((el, index)=>(
-      el.id !== row.id? el: {...el, status: !el.status}
+    let newUsers = users.map((el) => (
+      el.id !== row.id ? el : { ...el, status: !el.status }
     ))
     setUsers(newUsers)
     console.log('New User State', newUsers)
@@ -86,12 +90,19 @@ const TableComponent = () => {
   // }
 
   const handleDeleteButtonClick = () => {
+
     const getCheckedUsers = (ele1) => {
       if (ele1.status === true) {
-        return ele1.id, ele1.status
-      }       
-    }  
-    const delUsers = users.map(getCheckedUsers)
+        return [ele1.id, ele1.status]
+      }
+      return null
+    }
+    const delUsers = users.map(getCheckedUsers).filter((ele2) => {
+      return ele2 != null;
+    })
+
+
+
     console.log('Del User State 1', delUsers)
     // const delUsersInfo = delUsers.filter((ele2) => {
     //   if (ele2.id !== 0){
@@ -101,10 +112,26 @@ const TableComponent = () => {
     // console.log('Del User State 2', delUsersInfo)
   }
 
+  // const handleEditUsers = (ele3) => {
+  //   if (ele3.status === true) {
+  //     return ele3
+  //   }     
+  // }
+
+  const history = useHistory();
+
+
+  const handleEditRoute = (row) => {
+    history.push({
+      pathname: '/edituser',
+      state: { row },
+    });
+  }
+
   const classes = useStyles();
 
-    return (
-      <div>
+  return (
+    <div>
       <Header />
       <TableContainer component={Paper}>
         <Table className={classes.table} size='small' aria-label="a dense table">
@@ -125,14 +152,14 @@ const TableComponent = () => {
           </TableHead>
           <TableBody>
             {users.map((row) => (
-              <TableRow key={row.id} selected={row.status}>
+              <TableRow key={row.id} selected={row.status} onClick={handleEditRoute.bind(this, row)}>
                 <TableCell align="center">
                   <Checkbox
                     onChange={handleCheck.bind(this, row)}
                     checked={row.status}
                   />
                 </TableCell>
-                <TableCell align="center" component="th" scope="row"> {row.id}  </TableCell>
+                <TableCell align="center" component="th" scope="row">{row.id}</TableCell>
                 <TableCell align="center">{row.name}</TableCell>
                 <TableCell align="center">{row.email}</TableCell>
                 <TableCell align="center" >{row.group}
@@ -149,13 +176,17 @@ const TableComponent = () => {
               </TableRow>
             )
             )}
-          </TableBody>  
+          </TableBody>
         </Table>
       </TableContainer>
-      <Button color='primary' variant='outlined'  onClick={handleDeleteButtonClick}>Delete</Button>
-      <RedirectTableToCreate />
+      <Button color='primary' variant='outlined' onClick={handleDeleteButtonClick}>Delete</Button>
+      {/* <RedirectTableToCreate /> */}
+      {/* <EditUser editUsers = {users.map(handleEditUsers)} /> */}
+      {/* <Button onClick={handleRoute}>
+        Edit
+      </Button> */}
     </div>
-    );
+  );
 }
 
 export default TableComponent

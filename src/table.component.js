@@ -9,10 +9,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Checkbox } from '@material-ui/core';
 import { useState, useEffect } from 'react';
-import { CheckBox } from '@material-ui/icons';
+// import { CheckBox } from '@material-ui/icons';
 import { Button } from '@material-ui/core';
-import { MenuItem } from '@material-ui/core';
-import { Select } from '@material-ui/core';
+// import { MenuItem } from '@material-ui/core';
+// import { Select } from '@material-ui/core';
 import Header from "./header.component"
 import RedirectTableToCreate from './redirect1.component';
 
@@ -71,25 +71,25 @@ const TableComponent = () => {
     console.log('New User State', newUsers)
   }
 
-  const handleSelectChange = (e) => {
-    // setGroup(e.target.value);
-  };
+  // const handleSelectChange = (e) => {
+  //   // setGroup(e.target.value);
+  // };
 
-  const handleEditButtonClick = () => {
-    // if user.status === true,//
-    //enables select function for group and customers, enables editing names
-    //if newData !== oldData
-    //replace oldData with newData
-    //update the Data
-    // let editUsers = users
-    // const [editRow,setEditRow] = useState([])
-  }
+  // const handleEditButtonClick = () => {
+  //   // if user.status === true,//
+  //   //enables select function for group and customers, enables editing names
+  //   //if newData !== oldData
+  //   //replace oldData with newData
+  //   //update the Data
+  //   // let editUsers = users
+  //   // const [editRow,setEditRow] = useState([])
+  // }
 
   const handleDeleteButtonClick = () => {
     const getCheckedUsers = (ele1) => {
       if (ele1.status === true) {
         return ele1.id, ele1.status
-      } 
+      }       
     }  
     const delUsers = users.map(getCheckedUsers)
     console.log('Del User State 1', delUsers)

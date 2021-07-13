@@ -15,4 +15,5 @@ function RedirectTableToCreate() {
     </Button>
   );
 }
+
 export default RedirectTableToCreate;

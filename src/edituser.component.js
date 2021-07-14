@@ -10,15 +10,7 @@ import { useLocation } from 'react-router';
 
 const EditUser = () => {
   const [editUsers, setEditUsers] = useState([{ name: '', email: '', group: '', customer: '' }])
-  // const [editUsersInfo, setEditUsersInfo] = useState([])
   const location = useLocation()
-
-  // const getCheckedUsers = (ele3) => {
-  //   if (ele3.status === true) {
-  //     return ele3
-  //   }
-  //   return null
-  // }
 
   useEffect(() => {
     console.log('is it here?', location.state)
@@ -27,22 +19,7 @@ const EditUser = () => {
     }
   }, [location])
 
-  // useEffect(()=>{
-  //   setName(editUsers.name)
-  // }, [])
-
-  // useEffect(() => {
-  //   if (editUsers){
-  //   setEditUsersInfo(editUsers.map(getCheckedUsers).filter((ele2) => {
-  //     return ele2 != null;
-  //   }))
-  //   }
-
-  // },[])
-
   console.log('Edit Users Info', editUsers)
-
-  // let editUsersInfo = editUsers.map(getCheckedUsers)
 
 
   const groups = [
@@ -90,19 +67,6 @@ const EditUser = () => {
       label: 'Castrol',
     }
   ];
-  // const groups = ['Fuel','Industrial Parts','Lubricants','Generators','Vehicles','Packaging']
-  // const customers = ['Petrolimex','Penarol','Shell','Castrol']
-  // const users = [
-  //   {id: 609, name: 'A', email: 'a@gmail.com', group: groups[1], customer: customers[0], status: false},
-  //   {id: 12, name: 'Tran Van A', email: 'tranvana@gmail.com', group: groups[2], customer: customers[0], status: false},
-  //   {id: 1012, name: '@crisp', email: 'crispwastaken@gmail.com', group:groups[3], customer: customers[2], status: false},
-  //   {id: 402, name: 'turgid123', email: 'turgid123@gmail.com', group:groups[4], customer: customers[1], status: false},
-  //   {id: 798, name: 'DDDDD', email: 'xdddddd42@gmail.com', group:groups[5], customer: customers[3], status: false}
-  // ]
-  // const [name, setName] = useState('')
-  // const [email, setEmail] = useState('')
-  // const [group, setGroup] = useState('')
-  // const [customer, setCustomer] = useState('')
 
   const handleName = (e) => {
     setEditUsers({ ...editUsers, name: e.target.value })
@@ -177,23 +141,6 @@ const EditUser = () => {
               </MenuItem>
             ))}
           </TextField>
-          {/* <TextField 
-            id ="name-basic"
-            label="Password"
-            type="password"
-            onChange = {handlePassword}
-          />
-          {password}
-          <TextField 
-            id ="name-basic"
-            label="Confirm Password"
-            type="Password"
-            onChange = {handleConfirmPassword}
-          //   onInput = {handlePasswordCheck}
-            helperText = {passwordCheck}
-          />
-          {confirmPassword} */}
-
         </div>
       </div>
     </form>

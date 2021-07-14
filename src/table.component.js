@@ -124,7 +124,7 @@ const TableComponent = () => {
   const handleEditRoute = (row) => {
     history.push({
       pathname: '/edituser',
-      state: { row },
+      state: row,
     });
   }
 

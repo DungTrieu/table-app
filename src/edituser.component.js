@@ -8,9 +8,8 @@ import { useLocation } from 'react-router';
 
 
 
-
 const EditUser = () => {
-  const [editUsers, setEditUsers] = useState([])
+  const [editUsers, setEditUsers] = useState([{ name: '', email: '', group: '', customer: '' }])
   // const [editUsersInfo, setEditUsersInfo] = useState([])
   const location = useLocation()
 
@@ -22,11 +21,15 @@ const EditUser = () => {
   // }
 
   useEffect(() => {
-    console.log(location.state)
+    console.log('is it here?', location.state)
     if (location.state) {
-      setEditUsers(location.state.row)
+      setEditUsers(location.state)
     }
   }, [location])
+
+  // useEffect(()=>{
+  //   setName(editUsers.name)
+  // }, [])
 
   // useEffect(() => {
   //   if (editUsers){
@@ -96,26 +99,27 @@ const EditUser = () => {
   //   {id: 402, name: 'turgid123', email: 'turgid123@gmail.com', group:groups[4], customer: customers[1], status: false},
   //   {id: 798, name: 'DDDDD', email: 'xdddddd42@gmail.com', group:groups[5], customer: customers[3], status: false}
   // ]
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [group, setGroup] = useState('')
-  const [customer, setCustomer] = useState('')
+  // const [name, setName] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [group, setGroup] = useState('')
+  // const [customer, setCustomer] = useState('')
 
   const handleName = (e) => {
-    setName(e.target.value)
+    setEditUsers({ ...editUsers, name: e.target.value })
   }
 
   const handleEmail = (e) => {
-    setEmail(e.target.value)
+    setEditUsers({ ...editUsers, email: e.target.value })
   }
 
   const handleGroup = (e) => {
-    setGroup(e.target.value)
+    setEditUsers({ ...editUsers, group: e.target.value })
   }
 
   const handleCustomer = (e) => {
-    setCustomer(e.target.value)
+    setEditUsers({ ...editUsers, customer: e.target.value })
   }
+
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -128,6 +132,7 @@ const EditUser = () => {
   const classes = useStyles()
 
   return (
+
     <form className={classes.root} noValidate autoComplete="off">
       <div>
         <div>
@@ -137,7 +142,6 @@ const EditUser = () => {
             label="Name"
             onChange={handleName}
             value={editUsers.name}
-
           />
           <TextField
             id="email-basic"
@@ -150,7 +154,7 @@ const EditUser = () => {
             select
             label="Group"
             onChange={handleGroup}
-            value={editUsers.group}
+            value={editUsers.group || ''}
             helperText="Please select your group"
           >
             {groups.map((option) => (
@@ -164,7 +168,7 @@ const EditUser = () => {
             select
             label="Customer"
             onChange={handleCustomer}
-            value={editUsers.group}
+            value={editUsers.customer || ''}
             helperText="Please select your customer"
           >
             {customers.map((option) => (
@@ -189,14 +193,11 @@ const EditUser = () => {
             helperText = {passwordCheck}
           />
           {confirmPassword} */}
-          <p>User Details:</p>
-          <p>Name:   {name}</p>
-          <p>Email:  {email}</p>
-          <p>Group:  {group}</p>
-          <p>Customer:  {customer}</p>
+
         </div>
       </div>
     </form>
+
   )
 }
 

@@ -2,11 +2,15 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { Button } from '@material-ui/core';
 
+
 function RedirectTableToCreate() {
   const history = useHistory();
   
   const handleRoute = ( ) =>{ 
-    history.push("/edituser");
+    history.push({
+      pathname: '/edituser'
+      state: {userstoedit: users}
+    });
   }
   
   return (                     

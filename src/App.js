@@ -20,10 +20,10 @@ function App() {
                 <Route path='/edituser' component={EditUser} />
                 {/* <TableComponent />
                 <CreateUser /> */}
-        {/* <DelButton /> */}
-        {/* <Customers /> */}  
-        {/* <TextF /> */}
-        {/* <Table2 /> */}
+                {/* <DelButton /> */}
+                {/* <Customers /> */}  
+                {/* <TextF /> */}
+                {/* <Table2 /> */}
             </div>
         </Router>
     )

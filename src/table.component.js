@@ -43,7 +43,9 @@ const TableComponent = () => {
   }, [])
 
 
-  const handleCheck = (row) => {
+  const handleCheck = (e, row) => {
+    // e.stopPropagation()
+    // e.nativeEvent.stopImmediatePropagation();
     console.log(row)
     let newUsers = users.map((el) => (
       el.id !== row.id ? el : { ...el, status: !el.status }
@@ -88,31 +90,29 @@ const TableComponent = () => {
         <Table className={classes.table} size='small' aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <TableCell align="center">
-              </TableCell>
               <TableCell align="center">ID </TableCell>
               <TableCell align="center">Name</TableCell>
               <TableCell align="center">Email</TableCell>
               <TableCell align="center">Group</TableCell>
               <TableCell align="center">Customer</TableCell>
+              <TableCell align="center"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {users.map((row) => (
               <TableRow key={row.id} selected={row.status} onClick={handleEditRoute.bind(this, row)}>
-                <TableCell align="center">
-                  <Checkbox
-                    onChange={handleCheck.bind(this, row)}
-                    checked={row.status}
-                  />
-                </TableCell>
                 <TableCell align="center" component="th" scope="row">{row.id}</TableCell>
                 <TableCell align="center">{row.name}</TableCell>
                 <TableCell align="center">{row.email}</TableCell>
-                <TableCell align="center" >{row.group}
-                </TableCell>
+                <TableCell align="center" >{row.group} </TableCell>
                 <TableCell align="center">{row.customer}</TableCell>
                 <TableCell align="center">{row.status}</TableCell>
+                <TableCell align="center">
+                  <Checkbox
+                    onChange={(e) => {handleCheck(e, row);}}
+                    checked={row.status}
+                  />
+                </TableCell>
               </TableRow>
             )
             )}
@@ -120,6 +120,7 @@ const TableComponent = () => {
         </Table>
       </TableContainer>
       <Button color='primary' variant='outlined' onClick={handleDeleteButtonClick}>Delete</Button>
+
     </div>
   );
 }

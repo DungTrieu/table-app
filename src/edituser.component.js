@@ -5,6 +5,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
+import { Button } from '@material-ui/core';
 
 
 
@@ -19,7 +20,7 @@ const EditUser = () => {
     }
   }, [location])
 
-  console.log('Edit Users Info', editUsers)
+  // console.log('Edit Users Info', editUsers)
 
 
   const groups = [
@@ -93,6 +94,10 @@ const EditUser = () => {
     },
   }));
 
+  const handleClick = () => {
+    console.log(editUsers)
+  }
+
   const classes = useStyles()
 
   return (
@@ -110,6 +115,7 @@ const EditUser = () => {
           <TextField
             id="email-basic"
             label="Email"
+            // type='email'
             onChange={handleEmail}
             value={editUsers.email}
           />
@@ -142,6 +148,7 @@ const EditUser = () => {
             ))}
           </TextField>
         </div>
+        <Button color='primary' variant='outlined' onClick={handleClick}>ConsoleLog</Button>
       </div>
     </form>
 
